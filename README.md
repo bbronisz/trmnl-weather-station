@@ -1,4 +1,4 @@
-# TRMNL Home Assistant Weather Station
+# TRMNL Home Assistant sensors
 [![Open your Home Assistant instance and open this repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=bbronisz&repository=trmnl-weather-station&category=integration)
 [![Open your Home Assistant instance and start setting up this integration.](https://my.home-assistant.io/badges/config_flow_start.svg)](https://my.home-assistant.io/redirect/config_flow_start/?domain=trmnl_weather_station)
 

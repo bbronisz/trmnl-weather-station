@@ -9,12 +9,11 @@ custom_fields:
   # Add your custom fields here
 
 # Time zone for development
-time_zone: Europe/Berlin
+time_zone: Europe/Warsaw
 
 # override variables for development
 variables:
   count: 7
-  co2_unit: "ppm"
   entities:
     - n: "CO2"
       u: "ppm"

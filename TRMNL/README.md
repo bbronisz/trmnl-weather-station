@@ -1,6 +1,6 @@
-# TRMNL Weather Station Plugin
+# HA Home Sensors Plugin
 
-A weather station plugin for TRMNL.
+HomeAssistant's sensors plugin for TRMNL.
 
 ## Development
 
