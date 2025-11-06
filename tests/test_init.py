@@ -3,8 +3,8 @@ import pytest
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
 
-from custom_components.trmnl_weather_station import async_setup, async_setup_entry, async_unload_entry
-from custom_components.trmnl_weather_station.const import DOMAIN
+from custom_components.trmnl_ha_sensors import async_setup, async_setup_entry, async_unload_entry
+from custom_components.trmnl_ha_sensors.const import DOMAIN
 
 
 async def test_async_setup(hass: HomeAssistant):

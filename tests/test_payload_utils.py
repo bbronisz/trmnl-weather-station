@@ -2,7 +2,7 @@
 import pytest
 from homeassistant.core import State
 
-from custom_components.trmnl_weather_station.payload_utils import create_entity_payload, estimate_payload_size, round_sensor_value
+from custom_components.trmnl_ha_sensors.payload_utils import create_entity_payload, estimate_payload_size, round_sensor_value
 
 
 def test_round_sensor_value():

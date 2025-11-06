@@ -1,6 +1,6 @@
 {
-  "domain": "trmnl_weather_station",
-  "name": "TRMNL Weather Station",
+  "domain": "trmnl_ha_sensors",
+  "name": "TRMNL Home sensors",
   "codeowners": ["@TilmanGriesel", "@bbronisz"],
   "config_flow": true,
   "dependencies": [],

@@ -4,7 +4,7 @@ from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_NAME
 from homeassistant.core import HomeAssistant
 
-from custom_components.trmnl_weather_station.const import CONF_CO2_SENSOR, CONF_URL, DOMAIN
+from custom_components.trmnl_ha_sensors.const import CONF_CO2_SENSOR, CONF_URL, DOMAIN
 
 
 @pytest.fixture

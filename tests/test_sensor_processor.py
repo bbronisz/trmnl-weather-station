@@ -3,7 +3,7 @@ import pytest
 from aioresponses import aioresponses
 from homeassistant.core import HomeAssistant
 
-from custom_components.trmnl_weather_station.sensor_processor import SensorProcessor
+from custom_components.trmnl_ha_sensors.sensor_processor import SensorProcessor
 
 
 async def test_sensor_processor_success(hass: HomeAssistant, mock_config_entry):
