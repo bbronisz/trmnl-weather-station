@@ -4,10 +4,10 @@
   "codeowners": ["@TilmanGriesel", "@bbronisz"],
   "config_flow": true,
   "dependencies": [],
-  "documentation": "https://github.com/bbronisz/trmnl-weather-station",
+  "documentation": "https://github.com/bbronisz/trmnl_ha_sensors",
   "integration_type": "service",
   "iot_class": "cloud_push",
-  "issue_tracker": "https://github.com/bbronisz/trmnl-weather-station/issues",
+  "issue_tracker": "https://github.com/bbronisz/trmnl_ha_sensors/issues",
   "requirements": ["aiohttp"],
   "version": "0.5.1"
 }
