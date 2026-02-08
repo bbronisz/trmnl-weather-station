@@ -1,131 +1,21 @@
 <!--
-Home Assistant TRMNL Weather Station v0.6.0
+Home Assistant TRMNL sensors v0.1.0
 
 - GitHub: https://github.com/bbronisz/trmnl_ha_sensors
 - License: MIT License
 
 Changelog:
-- v0.6.0: Fixed TRMNL framework layout structure for proper label/value alignment
-- v0.5.1: Weather integration improvements, dev tools enhancement, HACS release preparation
-- v0.5.0: Added weather provider entity integration with weather icons in CO2 gauge section
-- v0.4.0: Expanded sensor support (up to 6 sensors), configurable update rates, new sensor types, entity icon attributes
-- v0.3.2: Updated TRMNL recipe setup instructions, refactored code into logic modules
-- v0.3.1: Fixed label positioning above sensor values, enhanced font-weight for values, updated shared template with icon mapping
-- v0.3.0: Initial release - First official version with basic weather station and CO₂ indicator functionality
--->
+- v0.1.0: Initial release - First version with basic sensors grouping functionality
 
 {% assign icon_map = 'apparent_power:mdi-flash,aqi:mdi-air-filter,area:mdi-vector-square,atmospheric_pressure:mdi-gauge,battery:mdi-battery,blood_glucose_concentration:mdi-water-percent,carbon_dioxide:mdi-molecule-co2,carbon_monoxide:mdi-molecule,conductivity:mdi-alpha-c-circle,current:mdi-current-ac,data_rate:mdi-server-network,data_size:mdi-database,date:mdi-calendar,distance:mdi-ruler,duration:mdi-timer,energy_distance:mdi-factory,energy_storage:mdi-battery-charging,enum:mdi-format-list-bulleted,frequency:mdi-sine-wave,gas:mdi-gas-cylinder,humidity:mdi-water-percent,illuminance:mdi-brightness-6,irradiance:mdi-weather-sunny,moisture:mdi-water,monetary:mdi-currency-usd,nitrogen_dioxide:mdi-molecule,nitrogen_monoxide:mdi-molecule,nitrous_oxide:mdi-molecule,ozone:mdi-shield-sun,pH:mdi-water,pm1:mdi-air-filter,pm25:mdi-air-filter,pm10:mdi-air-filter,power:mdi-flash,power_factor:mdi-percent,precipitation:mdi-weather-pouring,precipitation_intensity:mdi-weather-rainy,reactive_energy:mdi-flash-triangle,reactive_power:mdi-flash-outline,signal_strength:mdi-signal,sound_pressure:mdi-volume-high,speed:mdi-speedometer,sulphur_dioxide:mdi-molecule,temperature:mdi-thermometer,timestamp:mdi-clock-outline,volatile_organic_compounds:mdi-chemical-weapon,volatile_organic_compounds_parts:mdi-chemical-weapon,voltage:mdi-flash-circle,volume:mdi-cube,volume_flow_rate:mdi-water-pump,volume_storage:mdi-harddisk,water:mdi-water,weight:mdi-scale-bathroom,wind_direction:mdi-compass,wind_speed:mdi-weather-windy,energy:mdi-lightning-bolt,default:mdi-gauge' | split: ',' %}
 {% assign weather_icon_map = 'clear-night:mdi-weather-night,cloudy:mdi-weather-cloudy,fog:mdi-weather-fog,hail:mdi-weather-hail,lightning:mdi-weather-lightning,lightning-rainy:mdi-weather-lightning-rainy,partlycloudy:mdi-weather-partly-cloudy,pouring:mdi-weather-pouring,rainy:mdi-weather-rainy,snowy:mdi-weather-snowy,snowy-rainy:mdi-weather-snowy-rainy,sunny:mdi-weather-sunny,windy:mdi-weather-windy,windy-variant:mdi-weather-cloudy-arrow-right,exceptional:mdi-alert-circle,default:mdi-weather-cloudy' | split: ',' %}
 
-<!-- import Highcharts libraries -->
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/pattern-fill.js"></script>
 <style>
   @import url('https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css');
   .sensor-value {
     font-weight: 600 !important;
   }
+  .trmnl .view--half_vertical::before {
+    background: none;
+  }
 </style>
-<script type="text/javascript">
-  // CO2 level in ppm
-  var co2Level = 1200;
-
-  function co2Rating(level) {
-    if (level < 800) {
-      return "Excellent";
-    } else if (level < 1000) {
-      return "Good";
-    } else if (level < 1500) {
-      return "Fair";
-    } else {
-      return "Poor";
-    }
-  }
-
-  function createSimpleCO2Gauge(level, height) {
-    Highcharts.chart('co2-gauge', {
-      chart: {
-        type: "gauge",
-        height: height,
-        width: height
-      },
-      title: {
-        text: null
-      },
-      pane: {
-        startAngle: -150,
-        endAngle: 150,
-        background: {
-          backgroundColor: "transparent",
-          borderWidth: 0
-        }
-      },
-      plotOptions: {
-        gauge: {
-          animation: false,
-          pivot: {
-            backgroundColor: "transparent"
-          },
-          dial: {
-            backgroundColor: "transparent",
-            baseWidth: 0,
-          },
-        }
-      },
-      yAxis: {
-        min: 400,
-        max: 2000,
-        minorTickInterval: 0,
-        tickColor: "#ffffff",
-        tickLength: 0,
-        tickWidth: 0,
-        lineWidth: 0,
-        title: {
-          text: null
-        },
-        labels: {
-          enabled: false
-        },
-        plotBands: [
-          {
-            from: 400,
-            to: 2000,
-            color: {
-              pattern: {
-                image: "https://usetrmnl.com/images/grayscale/gray-4.png",
-                width: 8,
-                height: 8
-              }
-            },
-            innerRadius: '85%',
-            borderRadius: '50%'
-          },
-          {
-            from: 400,
-            to: level,
-            color: '#000000',
-            innerRadius: "85%",
-            borderRadius: "50%"
-          }
-        ]
-      },
-      series: [{
-        name: "CO₂",
-        data: [level],
-        dataLabels: {
-          format: '{point.y} ppm<br/>' + co2Rating(level),
-          borderWidth: 0,
-          style: {
-            fontSize: "16px",
-            textAlign: "center"
-          },
-          y: -25
-        }
-      }],
-      credits: {
-        enabled: false
-      }
-    });
-  }
-</script>

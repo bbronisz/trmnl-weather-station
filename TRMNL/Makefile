@@ -6,7 +6,7 @@ serve:
 	@ docker run \
 		-p 4567:4567 \
 		-v "$(PWD)":/plugin \
-		trmnl/trmnlp
+		trmnl/trmnlp serve
 login:
 	@ docker run \
 		-it \

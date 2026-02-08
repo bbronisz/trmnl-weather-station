@@ -5,7 +5,7 @@ watch:
   - .trmnlp.yml
 
 # values of custom fields
-custom_fields:
+custom_fields: {}
   # Add your custom fields here
 
 # Time zone for development
@@ -15,18 +15,12 @@ time_zone: Europe/Warsaw
 variables:
   count: 7
   entities:
-    - n: "CO2"
-      u: "ppm"
-      val: 820
-      type: "co2_primary"
-      primary: true
-      device_class: "carbon_dioxide"
-    - n: "Office"
+    - n: "Pokój"
       u: "°C"
       val: 20.5
       type: "sensor_1"
       device_class: "temperature"
-    - n: "Office"
+    - n: "Sypialnia"
       u: "%"
       val: 49
       type: "sensor_2"
@@ -56,7 +50,7 @@ variables:
   timestamp: "2025-06-14T10:14:25.085591"
   trmnl:
     plugin_settings:
-      instance_name: "Home Assistant Weather Station"
+      instance_name: "Home Assistant Sensors"
       strategy: "webhook"
       dark_mode: "no"
       polling_headers: ""
